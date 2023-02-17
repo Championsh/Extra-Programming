@@ -1,36 +1,28 @@
-import sys
-import math
-
-sys.stdin = open('25.txt', 'r')
-
-n = int(input())
-
-m1 = [99999] * 10
-
-sma = 0
-smi = 0
-
-for i in range(n):
-
-    s = input()
-    a = list(map(int, s.split()))
-    sma += max(a)
-    smi += min(a)
-    r = abs(a[0] - a[1])
-    m2 = [99999] * 10
-
-    for z in m1:
-        if z + r < m2[(z + r) % 10]:
-            m2[(z + r) % 10] = z + r
-    if m1[r % 10] > r:
-        m1[r % 10] = r
-        m2[r % 10] = r
-    for j in range(10):
-        if m1[j] > m2[j]:
-            m1[j] = m2[j]
-
-if sma % 10 == smi % 10:
-    print(smi)
-else:
-    smi += m1[(sma - smi) % 10]
-    print(smi)
+s1 = "0111110111111100"
+s2 = "011011111100011?"
+s3 = "0010101011010111"
+r1 = 10452
+r2 = 10322
+r3 = 23948
+r4 = 28663
+x = int(s1, 2)
+for i in range(16):
+    for t in range(2):
+        s3 = s3[:i] + str(t) + s3[i + 1:]
+        z = int(s3, 2)
+        for j in range(2):
+            s2 = s2[:15] + str(j)
+            y = int(s2, 2)
+            a1 = z & x
+            a2 = x ^ (z << 1)
+            a3 = x & (y << 1)
+            a4 = y | (z >> 2)
+            if (a1 == r1) & (a2 == r2) & (a3 == r3) & (a4 == r4):
+                print(s3)
+                print(i)
+'''
+z & x
+x ^ (z << 1)
+x & (y << 1)
+y | (z >> 2)
+'''
